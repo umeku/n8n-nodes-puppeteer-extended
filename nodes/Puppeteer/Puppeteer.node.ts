@@ -1,4 +1,3 @@
-import { IExecuteFunctions } from "n8n-core";
 import {
 	IDataObject,
 	INodeExecutionData,
@@ -6,8 +5,9 @@ import {
 	INodeTypeDescription,
 	ILoadOptionsFunctions,
 	INodePropertyOptions,
+	IExecuteFunctions
 } from "n8n-workflow";
-import { devices } from "puppeteer";
+import {devices} from "puppeteer";
 import { nodeDescription } from "./Puppeteer.node.options";
 import { ipcRequest } from "./puppeteer/helpers";
 import server from "./puppeteer";
@@ -113,7 +113,7 @@ export class Puppeteer implements INodeType {
 									? "application/pdf"
 									: `image/${res.binary[key].type}`
 							)
-							.catch((e) => console.log(e));
+							.catch((e: any) => console.log(e));
 						if (binaryData) res.binary[key] = binaryData;
 						else delete res.binary[key];
 					}
