@@ -42,7 +42,7 @@
             "dist/nodes/Puppeteer/Puppeteer.node.js"
         ]
     },
-    "devDependencies": {
+    "dependencies": {
         "@types/node": "^20.8.7",
         "@types/node-ipc": "^9.2.2",
         "axios": "^1.1.3",
