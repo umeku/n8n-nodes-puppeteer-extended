@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "description": "n8n node for requesting webpages using Puppeteer",
     "license": "MIT",
-    "homepage": "https://github.com/hckdotng/n8n-nodes-puppeteer-extended",
+    "homepage": "https://github.com/siduko/n8n-nodes-puppeteer-extended",
     "author": {
         "name": "hckdotng",
         "url": "https://hck.ng"
