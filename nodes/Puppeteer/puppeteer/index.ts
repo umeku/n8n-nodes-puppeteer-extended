@@ -62,7 +62,7 @@ export default function () {
 					data.executionId &&
 					data.apiKey &&
 					state.executions[data.executionId] &&
-					!state.executions[data.executionId].checked
+					!state.executions[data.executionId]?.checked
 				) {
 					state.executions[data.executionId].checked = true;
 					const checkExecution = async (

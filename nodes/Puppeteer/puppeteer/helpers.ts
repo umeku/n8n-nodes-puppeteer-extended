@@ -21,9 +21,9 @@ export const ipcRequest = (type: string, parameters: any): Promise<any> => {
 	return new Promise((resolve) => {
 		ipc.config.retry = 1500;
 		ipc.connectTo("puppeteer", () => {
-			ipc.of.puppeteer.emit(type, parameters);
+			ipc.of.puppeteer?.emit(type, parameters);
 
-			ipc.of.puppeteer.on(type, (data: any) => {
+			ipc.of.puppeteer?.on(type, (data: any) => {
 				resolve(data);
 			});
 		});

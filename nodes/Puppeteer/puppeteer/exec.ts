@@ -1,7 +1,7 @@
 import {
 	Page,
 	PuppeteerLifeCycleEvent,
-	devices,
+	KnownDevices,
 	HTTPResponse,
 	ScreenshotOptions,
 	PDFOptions,
@@ -319,12 +319,21 @@ export default async function (
 	executionId: string,
 	continueOnFail: boolean
 ) {
-	const browser = state.executions[executionId].browser;
+	let stateExecution = state.executions[executionId];
+	if(stateExecution === undefined) {
+		return;
+	}
+
+	const browser = stateExecution?.browser;
 	if (!browser) return;
 
 	const pageCaching = nodeParameters.globalOptions.pageCaching !== false;
 
 	const run = async (nodeParameters: INodeParameters) => {
+		if(stateExecution === undefined) {
+			return;
+		}
+
 		const urlString = nodeParameters.url;
 
 		let page: Page, response;
@@ -353,7 +362,8 @@ export default async function (
 			await page.setCacheEnabled(pageCaching);
 
 			if (device) {
-				const emulatedDevice = devices[device];
+				// @ts-ignore
+				const emulatedDevice = KnownDevices[device]
 				if (emulatedDevice) {
 					await page.emulate(emulatedDevice);
 				}
@@ -376,14 +386,14 @@ export default async function (
 			const timeout = nodeParameters.globalOptions.timeout as number;
 			response = await page.goto(url.toString(), { waitUntil, timeout });
 
-			state.executions[executionId].previousPage = page;
-			state.executions[executionId].previousResponse = response;
+			stateExecution.previousPage = page;
+			stateExecution.previousResponse = response;
 		} else if (
-			state.executions[executionId].previousPage &&
-			state.executions[executionId].previousResponse
+			stateExecution?.previousPage &&
+			stateExecution?.previousResponse
 		) {
-			page = state.executions[executionId].previousPage as Page;
-			response = state.executions[executionId].previousResponse;
+			page = stateExecution?.previousPage as Page;
+			response = stateExecution?.previousResponse;
 
 			if (nodeParameters.nodeOptions.waitUntil)
 				await page.waitForNavigation({
