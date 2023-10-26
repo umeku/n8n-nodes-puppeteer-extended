@@ -4,7 +4,7 @@ import { IDataObject } from "n8n-workflow";
 
 export default async function (globalOptions: IDataObject) {
 	const launchArguments = (globalOptions.launchArguments as IDataObject) || {};
-	const headless = globalOptions.headless !== false;
+	const headless = globalOptions.headless as boolean|'new'|undefined;
 	const executablePath = globalOptions.executablePath as string;
 	const stealth = globalOptions.stealth === true;
 	// const pageCaching = globalOptions.pageCaching !== false;

@@ -173,10 +173,22 @@ const globalOptions: INodeProperties[] = [
 	{
 		displayName: "Headless mode",
 		name: "headless",
-		type: "boolean",
+		type: "options",
+		options: [
+			{
+				name: "New",
+				value: "new",
+				description: "Allow new headless mode",
+			},
+			{
+				name: "Old",
+				value: true,
+				description: "Allow old headless mode",
+			},
+		],
 		required: false,
-		default: true,
-		description: "Whether to run browser in headless mode. Defaults to true.",
+		default: 'new',
+		description: "Whether to run browser in headless mode. Defaults to new.",
 	},
 	{
 		displayName: "Stealth mode",

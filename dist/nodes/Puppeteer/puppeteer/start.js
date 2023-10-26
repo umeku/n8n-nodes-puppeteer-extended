@@ -7,7 +7,7 @@ const puppeteer_extra_1 = __importDefault(require("puppeteer-extra"));
 const puppeteer_extra_plugin_stealth_1 = __importDefault(require("puppeteer-extra-plugin-stealth"));
 async function default_1(globalOptions) {
     const launchArguments = globalOptions.launchArguments || {};
-    const headless = globalOptions.headless !== false;
+    const headless = globalOptions.headless;
     const executablePath = globalOptions.executablePath;
     const stealth = globalOptions.stealth === true;
     const launchArgs = launchArguments.args;
