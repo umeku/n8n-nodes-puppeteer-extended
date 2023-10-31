@@ -47,12 +47,12 @@ class Puppeteer {
         const queryParameters = this.getNodeParameter("queryParameters", 0, {});
         const interactions = this.getNodeParameter("interactions", 0, {});
         const output = this.getNodeParameter("output", 0, {});
+        console.log('[PuppeteerNode] Launch');
         const isStarted = await (0, helpers_1.ipcRequest)("launch", {
             globalOptions,
             executionId,
-        }).catch((e) => {
-            throw new Error(e);
         });
+        console.log('[PuppeteerNode] Launch', isStarted);
         if (isStarted) {
             console.log("exec", globalOptions);
             const res = await (0, helpers_1.ipcRequest)("exec", {

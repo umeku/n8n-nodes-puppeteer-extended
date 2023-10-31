@@ -37,8 +37,8 @@ async function default_1(globalOptions) {
         headless,
         args,
         executablePath,
-    })
-        .catch((e) => console.log(e));
+    });
+    console.log(`[Start] Launch browser`);
     return browser !== null && browser !== void 0 ? browser : undefined;
 }
 exports.default = default_1;

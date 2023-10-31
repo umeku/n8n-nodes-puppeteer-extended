@@ -74,13 +74,13 @@ export class Puppeteer implements INodeType {
 		) as IDataObject;
 
 		const output = this.getNodeParameter("output", 0, {}) as IDataObject;
-
+		console.log('[PuppeteerNode] Launch');
 		const isStarted = await ipcRequest("launch", {
 			globalOptions,
 			executionId,
-		}).catch((e: any) => {
-			throw new Error(e);
-		});
+		})
+
+		console.log('[PuppeteerNode] Launch', isStarted);
 
 		if (isStarted) {
 			console.log("exec", globalOptions);

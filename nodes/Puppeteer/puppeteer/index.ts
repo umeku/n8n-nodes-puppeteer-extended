@@ -1,11 +1,11 @@
-import { Browser } from "puppeteer";
+import {Browser} from "puppeteer";
 import ipc from "node-ipc";
-import { IDataObject } from "n8n-workflow";
+import {IDataObject} from "n8n-workflow";
 import axios from "axios";
 import start from "./start";
 import exec from "./exec";
 import state from "./state";
-import { INodeParameters } from "./helpers";
+import {INodeParameters} from "./helpers";
 
 export default function () {
 	ipc.config.id = "puppeteer";
@@ -18,16 +18,27 @@ export default function () {
 				data: { globalOptions: IDataObject; executionId: string },
 				socket: any
 			) => {
-				let browser: Browser | void;
-				if (!state.executions[data.executionId]?.browser) {
-					browser = await start(data.globalOptions);
-					if (browser) state.executions[data.executionId] = { browser };
+				try {
+					console.log('[Index][IPC] On Launch')
+					let browser: Browser | void;
+					if (!state.executions[data.executionId]?.browser) {
+						browser = await start(data.globalOptions);
+						if (browser) state.executions[data.executionId] = {browser};
+					}
+					console.log('[Index][IPC] Emit Launch')
+					ipc.server.emit(
+						socket,
+						"launch",
+						!!state.executions[data.executionId]?.browser
+					);
+				} catch (e) {
+					console.log('[Index][IPC] Error Launch')
+					ipc.server.emit(
+						socket,
+						"launch",
+						new Error(e)
+					);
 				}
-				ipc.server.emit(
-					socket,
-					"launch",
-					!!state.executions[data.executionId]?.browser
-				);
 			}
 		);
 

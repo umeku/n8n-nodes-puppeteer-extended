@@ -14,13 +14,21 @@ function default_1() {
     node_ipc_1.default.serve(function () {
         node_ipc_1.default.server.on("launch", async (data, socket) => {
             var _a, _b;
-            let browser;
-            if (!((_a = state_1.default.executions[data.executionId]) === null || _a === void 0 ? void 0 : _a.browser)) {
-                browser = await (0, start_1.default)(data.globalOptions);
-                if (browser)
-                    state_1.default.executions[data.executionId] = { browser };
+            try {
+                console.log('[Index][IPC] On Launch');
+                let browser;
+                if (!((_a = state_1.default.executions[data.executionId]) === null || _a === void 0 ? void 0 : _a.browser)) {
+                    browser = await (0, start_1.default)(data.globalOptions);
+                    if (browser)
+                        state_1.default.executions[data.executionId] = { browser };
+                }
+                console.log('[Index][IPC] Emit Launch');
+                node_ipc_1.default.server.emit(socket, "launch", !!((_b = state_1.default.executions[data.executionId]) === null || _b === void 0 ? void 0 : _b.browser));
             }
-            node_ipc_1.default.server.emit(socket, "launch", !!((_b = state_1.default.executions[data.executionId]) === null || _b === void 0 ? void 0 : _b.browser));
+            catch (e) {
+                console.log('[Index][IPC] Error Launch');
+                node_ipc_1.default.server.emit(socket, "launch", new Error(e));
+            }
         });
         node_ipc_1.default.server.on("exec", async (data, socket) => {
             const returnData = await (0, exec_1.default)(data.nodeParameters, data.executionId, data.continueOnFail);
