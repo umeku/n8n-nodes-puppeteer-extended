@@ -19,7 +19,14 @@ export interface INodeParameters {
         parameter: {
             selector: string;
             value?: string;
+            sendKeys?: {
+                parameter: {
+                    key: string;
+                    sendType: string;
+                }[];
+            };
             waitForNavigation?: boolean;
+            timeToWait?: number;
         }[];
     };
 }

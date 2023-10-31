@@ -197,6 +197,14 @@ const globalOptions = [
         description: "When enabled, applies various techniques to make detection of headless Puppeteer harder.",
     },
     {
+        displayName: "Recaptcha resolver mode",
+        name: "recapcha",
+        type: "boolean",
+        required: false,
+        default: false,
+        description: "When enabled, applies various techniques to make resolve recaptcha automatically.",
+    },
+    {
         displayName: "Proxy Server",
         name: "proxyServer",
         type: "string",
@@ -324,6 +332,56 @@ const nodeOptions = [
         description: "Custom JS to inject",
     },
 ];
+const sendKeyParameters = {
+    displayName: "Send Keys",
+    name: "sendKeys",
+    placeholder: "Add Send Key",
+    type: "fixedCollection",
+    typeOptions: {
+        multipleValues: true,
+    },
+    description: "The send key parameter.",
+    default: {},
+    required: false,
+    options: [
+        {
+            name: "parameter",
+            displayName: "Parameter",
+            values: [
+                {
+                    displayName: "Key",
+                    name: "key",
+                    type: "string",
+                    default: "",
+                    description: "Key to send",
+                    required: true,
+                },
+                {
+                    displayName: "Send type",
+                    name: "sendType",
+                    type: "options",
+                    required: false,
+                    default: "press",
+                    options: [
+                        {
+                            name: 'Press Up',
+                            value: 'up',
+                        },
+                        {
+                            name: 'Press Down',
+                            value: 'down',
+                        },
+                        {
+                            name: 'Press',
+                            value: 'press',
+                        },
+                    ],
+                    description: "Value of the parameter.",
+                },
+            ],
+        },
+    ],
+};
 const queryParameters = {
     displayName: "Query Parameters",
     name: "queryParameters",
@@ -386,6 +444,7 @@ const interactions = {
                     default: "",
                     description: "If empty, Puppeteer will click on the selector, otherwise the value will be filled in the corresponding field",
                 },
+                Object.assign({}, sendKeyParameters),
                 {
                     displayName: "Wait for navigation",
                     name: "waitForNavigation",
@@ -393,6 +452,13 @@ const interactions = {
                     required: false,
                     default: false,
                     description: "If the click will trigger a page loading, set it to true to prevent actions during the loading",
+                },
+                {
+                    displayName: "Time to Wait",
+                    name: "timeToWait",
+                    type: "number",
+                    default: 0,
+                    description: "You can specify a time to wait (ms) before any action",
                 },
             ],
         },
@@ -721,13 +787,13 @@ const output = {
                     type: "string",
                     default: ``,
                     description: `HTML template for the print header. Should be valid HTML with the following classes used to inject values into them: - date formatted print date
-		
+
 								- title document title
-		
+
 								- url document location
-		
+
 								- pageNumber current page number
-		
+
 								- totalPages total pages in the document`,
                     noDataExpression: true,
                 },
@@ -757,6 +823,20 @@ const output = {
                     required: true,
                     default: false,
                     description: "Set to true to include background graphics.",
+                },
+            ],
+        },
+        {
+            name: "getCookie",
+            displayName: "Get cookies",
+            values: [
+                {
+                    displayName: "Property Name",
+                    name: "dataPropertyName",
+                    type: "string",
+                    required: true,
+                    default: "pageCookies",
+                    description: "Name of the json key to access the page cookies.",
                 },
             ],
         },

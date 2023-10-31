@@ -232,6 +232,7 @@ async function pagePDF(options, page) {
     return {};
 }
 const DEFAULT_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36";
+const waitForTimeout = (milliseconds) => new Promise(r => setTimeout(r, milliseconds));
 async function default_1(nodeParameters, executionId, continueOnFail) {
     let stateExecution = state_1.default.executions[executionId];
     if (stateExecution === undefined) {
@@ -242,8 +243,8 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
         return;
     const pageCaching = nodeParameters.globalOptions.pageCaching !== false;
     const run = async (nodeParameters) => {
-        var _a, e_1, _b, _c;
-        var _d, _e, _f, _g, _h;
+        var _a, e_1, _b, _c, _d, e_2, _e, _f;
+        var _g, _h, _j, _k, _l;
         if (stateExecution === undefined) {
             return;
         }
@@ -252,7 +253,7 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
         if (urlString) {
             const { parameter: someHeaders = [] } = (nodeParameters.globalOptions
                 .headers || {});
-            const queryParameters = (_e = (_d = nodeParameters.queryParameters) === null || _d === void 0 ? void 0 : _d.parameter) !== null && _e !== void 0 ? _e : [];
+            const queryParameters = (_h = (_g = nodeParameters.queryParameters) === null || _g === void 0 ? void 0 : _g.parameter) !== null && _h !== void 0 ? _h : [];
             const requestHeaders = someHeaders.reduce((acc, cur) => {
                 acc[cur.name] = cur.value;
                 return acc;
@@ -303,10 +304,10 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
         }
         if (nodeParameters.nodeOptions.timeToWait ||
             nodeParameters.globalOptions.timeToWait)
-            await page.waitForTimeout((_f = nodeParameters.nodeOptions.timeToWait) !== null && _f !== void 0 ? _f : nodeParameters.globalOptions.timeToWait);
+            await waitForTimeout((_j = nodeParameters.nodeOptions.timeToWait) !== null && _j !== void 0 ? _j : nodeParameters.globalOptions.timeToWait);
         if (nodeParameters.nodeOptions.waitForSelector ||
             nodeParameters.globalOptions.waitForSelector)
-            await page.waitForSelector((_g = nodeParameters.nodeOptions.waitForSelector) !== null && _g !== void 0 ? _g : nodeParameters.globalOptions.waitForSelector, { timeout: 10000 });
+            await page.waitForSelector((_k = nodeParameters.nodeOptions.waitForSelector) !== null && _k !== void 0 ? _k : nodeParameters.globalOptions.waitForSelector, { timeout: 10000 });
         if (nodeParameters.nodeOptions.injectHtml ||
             nodeParameters.globalOptions.injectHtml) {
             await page.evaluate(async (nodeParameters, globalOptions) => {
@@ -384,6 +385,24 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
                     }
                     await Promise.all(promises);
                 }
+                if (p.sendKeys) {
+                    for (const sendKey of p.sendKeys.parameter) {
+                        switch (sendKey.sendType) {
+                            case 'up':
+                                await page.keyboard.up(sendKey.key);
+                                break;
+                            case 'down':
+                                await page.keyboard.down(sendKey.key);
+                                break;
+                            case 'press':
+                                await page.keyboard.press(sendKey.key);
+                                break;
+                        }
+                    }
+                }
+                if (p.timeToWait) {
+                    await waitForTimeout(p.timeToWait);
+                }
             }
         }
         const headers = await response.headers();
@@ -405,7 +424,7 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
             });
         };
         if (statusCode !== 200) {
-            if (continueOnFail !== true) {
+            if (!continueOnFail) {
                 if (nodeParameters.output.getPageContent)
                     await getAllPageContent();
             }
@@ -418,9 +437,9 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
                 await getAllPageContent();
             if (nodeParameters.output.getScreenshot) {
                 const allScreenshot = [];
-                nodeParameters.output.getScreenshot.forEach(async (options) => {
+                for (const options of nodeParameters.output.getScreenshot) {
                     allScreenshot.push(pageScreenshot(options, page));
-                });
+                }
                 const resolvedAllPageScreenshot = await Promise.all(allScreenshot).catch((e) => console.log(e));
                 (resolvedAllPageScreenshot !== null && resolvedAllPageScreenshot !== void 0 ? resolvedAllPageScreenshot : []).forEach((pageScreenshot) => {
                     var _a;
@@ -431,22 +450,46 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
             }
             if (nodeParameters.output.getPDF) {
                 try {
-                    for (var _j = true, _k = __asyncValues(nodeParameters.output.getPDF), _l; _l = await _k.next(), _a = _l.done, !_a; _j = true) {
-                        _c = _l.value;
-                        _j = false;
+                    for (var _m = true, _o = __asyncValues(nodeParameters.output.getPDF), _p; _p = await _o.next(), _a = _p.done, !_a; _m = true) {
+                        _c = _p.value;
+                        _m = false;
                         const options = _c;
                         const pdfBinary = await pagePDF(options, page);
                         if (pdfBinary) {
-                            data.binary = Object.assign(Object.assign({}, ((_h = data.binary) !== null && _h !== void 0 ? _h : {})), pdfBinary);
+                            data.binary = Object.assign(Object.assign({}, ((_l = data.binary) !== null && _l !== void 0 ? _l : {})), pdfBinary);
                         }
                     }
                 }
                 catch (e_1_1) { e_1 = { error: e_1_1 }; }
                 finally {
                     try {
-                        if (!_j && !_a && (_b = _k.return)) await _b.call(_k);
+                        if (!_m && !_a && (_b = _o.return)) await _b.call(_o);
                     }
                     finally { if (e_1) throw e_1.error; }
+                }
+            }
+            if (nodeParameters.output.getCookie) {
+                try {
+                    for (var _q = true, _r = __asyncValues(nodeParameters.output.getCookie), _s; _s = await _r.next(), _d = _s.done, !_d; _q = true) {
+                        _f = _s.value;
+                        _q = false;
+                        const options = _f;
+                        const cookies = await page.cookies();
+                        const ss = await page.evaluate(() => sessionStorage);
+                        const ls = await page.evaluate(() => localStorage);
+                        data.json[options.dataPropertyName] = {
+                            cookies,
+                            sessionStorage: ss,
+                            localStorage: ls
+                        };
+                    }
+                }
+                catch (e_2_1) { e_2 = { error: e_2_1 }; }
+                finally {
+                    try {
+                        if (!_q && !_d && (_e = _r.return)) await _e.call(_r);
+                    }
+                    finally { if (e_2) throw e_2.error; }
                 }
             }
         }

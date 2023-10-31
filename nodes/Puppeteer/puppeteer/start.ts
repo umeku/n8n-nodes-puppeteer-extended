@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer-extra";
 import pluginStealth from "puppeteer-extra-plugin-stealth";
+import pluginRecaptcha from 'puppeteer-extra-plugin-recaptcha';
 import { IDataObject } from "n8n-workflow";
 
 export default async function (globalOptions: IDataObject) {
@@ -7,6 +8,7 @@ export default async function (globalOptions: IDataObject) {
 	const headless = globalOptions.headless as boolean|'new'|undefined;
 	const executablePath = globalOptions.executablePath as string;
 	const stealth = globalOptions.stealth === true;
+	const recaptcha = globalOptions.recaptcha === false;
 	// const pageCaching = globalOptions.pageCaching !== false;
 	const launchArgs: IDataObject[] = launchArguments.args as IDataObject[];
 	const args: string[] = [];
@@ -23,6 +25,16 @@ export default async function (globalOptions: IDataObject) {
 
 	if (stealth) {
 		puppeteer.use(pluginStealth());
+	}
+
+	if (recaptcha) {
+		puppeteer.use(pluginRecaptcha({
+			provider: {
+				id: '',
+				token: ''
+			},
+			visualFeedback: true
+		}))
 	}
 
 	const browser = await puppeteer

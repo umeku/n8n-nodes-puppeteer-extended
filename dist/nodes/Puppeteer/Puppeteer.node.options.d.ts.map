@@ -1,1 +1,1 @@
-{"version":3,"file":"Puppeteer.node.options.d.ts","sourceRoot":"","sources":["../../../nodes/Puppeteer/Puppeteer.node.options.ts"],"names":[],"mappings":"AAAA,OAAO,EAAmB,oBAAoB,EAAE,MAAM,cAAc,CAAC;AA2xBrE,eAAO,MAAM,eAAe,EAAE,oBAoD7B,CAAC"}
+{"version":3,"file":"Puppeteer.node.options.d.ts","sourceRoot":"","sources":["../../../nodes/Puppeteer/Puppeteer.node.options.ts"],"names":[],"mappings":"AAAA,OAAO,EAAmB,oBAAoB,EAAE,MAAM,cAAc,CAAC;AA62BrE,eAAO,MAAM,eAAe,EAAE,oBAoD7B,CAAC"}
