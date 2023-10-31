@@ -5,7 +5,7 @@ import {
 	HTTPResponse,
 	ScreenshotOptions,
 	PDFOptions,
-	PaperFormat,
+	PaperFormat, KeyInput,
 } from "puppeteer";
 import { IDataObject, IBinaryData } from "n8n-workflow";
 import state from "./state";
@@ -314,6 +314,8 @@ async function pagePDF(options: IPagePdf, page: Page): Promise<any> {
 const DEFAULT_USER_AGENT =
 	"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36";
 
+const waitForTimeout = (milliseconds: number) => new Promise(r => setTimeout(r, milliseconds));
+
 export default async function (
 	nodeParameters: INodeParameters,
 	executionId: string,
@@ -408,7 +410,7 @@ export default async function (
 			nodeParameters.nodeOptions.timeToWait ||
 			nodeParameters.globalOptions.timeToWait
 		)
-			await page.waitForTimeout(
+			await waitForTimeout(
 				nodeParameters.nodeOptions.timeToWait ??
 					nodeParameters.globalOptions.timeToWait
 			);
@@ -532,6 +534,27 @@ export default async function (
 					}
 					await Promise.all(promises);
 				}
+
+				if(p.sendKeys) {
+					for (const sendKey of p.sendKeys.parameter) {
+						switch(sendKey.sendType) {
+							case 'up':
+								await page.keyboard.up(sendKey.key as KeyInput);
+								break;
+							case 'down':
+								await page.keyboard.down(sendKey.key as KeyInput);
+								break;
+							case 'press':
+								await page.keyboard.press(sendKey.key as KeyInput);
+								break;
+						}
+					}
+				}
+
+				if(p.timeToWait) {
+					await waitForTimeout(p.timeToWait);
+				}
+
 			}
 		}
 
@@ -567,7 +590,7 @@ export default async function (
 		};
 
 		if (statusCode !== 200) {
-			if (continueOnFail !== true) {
+			if (!continueOnFail) {
 				if (nodeParameters.output.getPageContent) await getAllPageContent();
 			} else {
 				throw new Error(`Request failed with status code ${statusCode}`);
@@ -577,11 +600,9 @@ export default async function (
 			if (nodeParameters.output.getScreenshot) {
 				const allScreenshot: any[] = [];
 
-				nodeParameters.output.getScreenshot.forEach(
-					async (options: IPageScreenshot) => {
-						allScreenshot.push(pageScreenshot(options, page));
-					}
-				);
+				for (const options of nodeParameters.output.getScreenshot) {
+					allScreenshot.push(pageScreenshot(options, page));
+				}
 
 				const resolvedAllPageScreenshot = await Promise.all(
 					allScreenshot
@@ -608,6 +629,19 @@ export default async function (
 					}
 				}
 			}
+			if(nodeParameters.output.getCookie) {
+				for await (const options of nodeParameters.output.getCookie) {
+					const cookies = await page.cookies();
+					const ss = await page.evaluate(() => sessionStorage);
+					const ls = await page.evaluate(() => localStorage);
+					data.json[options.dataPropertyName] = {
+						cookies,
+						sessionStorage: ss,
+						localStorage: ls
+					};
+				}
+			}
+
 		}
 
 		return data;
