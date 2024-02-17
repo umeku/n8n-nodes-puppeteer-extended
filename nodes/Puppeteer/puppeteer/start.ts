@@ -43,7 +43,8 @@ export default async function (globalOptions: IDataObject) {
 			args,
 			executablePath,
 		})
-		.catch((e) => console.log(e));
+
+	console.log(`[Start] Launch browser`)
 
 	return browser ?? undefined;
 }

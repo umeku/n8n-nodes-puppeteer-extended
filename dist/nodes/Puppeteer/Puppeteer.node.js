@@ -41,18 +41,25 @@ class Puppeteer {
         let returnData = [];
         const credentials = (await this.getCredentials("n8nApi"));
         const executionId = this.getExecutionId();
-        const globalOptions = this.getNodeParameter("globalOptions", 0, {});
+        const globalOptions = this.getNodeParameter("globalOptions", 0, {
+            headless: 'new',
+            launchArguments: { args: [{ arg: '--no-sandbox' }] },
+            stealth: true
+        });
         const nodeOptions = this.getNodeParameter("nodeOptions", 0, {});
         const url = this.getNodeParameter("url", 0, {});
         const queryParameters = this.getNodeParameter("queryParameters", 0, {});
         const interactions = this.getNodeParameter("interactions", 0, {});
         const output = this.getNodeParameter("output", 0, {});
+        console.log('[PuppeteerNode] Launch');
         const isStarted = await (0, helpers_1.ipcRequest)("launch", {
             globalOptions,
             executionId,
         }).catch((e) => {
+            console.log("Throw error", e);
             throw new Error(e);
         });
+        console.log('[PuppeteerNode] Launch', isStarted);
         if (isStarted) {
             console.log("exec", globalOptions);
             const res = await (0, helpers_1.ipcRequest)("exec", {

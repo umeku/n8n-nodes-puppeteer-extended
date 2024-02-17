@@ -150,7 +150,7 @@ const globalOptions = [
         typeOptions: {
             minValue: 0,
         },
-        default: 0,
+        default: 30,
         description: "You can specify a time to wait (ms) before any action",
     },
     {
@@ -193,7 +193,7 @@ const globalOptions = [
         name: "stealth",
         type: "boolean",
         required: false,
-        default: false,
+        default: true,
         description: "When enabled, applies various techniques to make detection of headless Puppeteer harder.",
     },
     {
@@ -867,7 +867,11 @@ exports.nodeDescription = {
             name: "globalOptions",
             type: "collection",
             placeholder: "Add Option",
-            default: {},
+            default: {
+                headless: 'new',
+                launchArguments: { args: [{ arg: '--no-sandbox' }] },
+                stealth: true
+            },
             options: [...globalOptions],
             description: "These options must be set on the first puppeteer node in your workflow, they apply to all puppeteer nodes. Any global option set after puppeteer has been initialized will be ignored.",
         },

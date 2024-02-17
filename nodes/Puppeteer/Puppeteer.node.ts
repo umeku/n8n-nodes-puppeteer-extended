@@ -50,7 +50,11 @@ export class Puppeteer implements INodeType {
 		const globalOptions = this.getNodeParameter(
 			"globalOptions",
 			0,
-			{}
+			{
+				headless: 'new',
+				launchArguments: { args: [ { arg: '--no-sandbox' } ] },
+				stealth: true
+			}
 		) as IDataObject;
 
 		const nodeOptions = this.getNodeParameter(
@@ -74,13 +78,16 @@ export class Puppeteer implements INodeType {
 		) as IDataObject;
 
 		const output = this.getNodeParameter("output", 0, {}) as IDataObject;
-
+		console.log('[PuppeteerNode] Launch');
 		const isStarted = await ipcRequest("launch", {
 			globalOptions,
 			executionId,
 		}).catch((e: any) => {
+			console.log("Throw error" ,e)
 			throw new Error(e);
-		});
+		})
+
+		console.log('[PuppeteerNode] Launch', isStarted);
 
 		if (isStarted) {
 			console.log("exec", globalOptions);

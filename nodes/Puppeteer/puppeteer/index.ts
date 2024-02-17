@@ -1,11 +1,12 @@
-import { Browser } from "puppeteer";
+import {Browser} from "puppeteer";
 import ipc from "node-ipc";
-import { IDataObject } from "n8n-workflow";
+import {IDataObject} from "n8n-workflow";
 import axios from "axios";
 import start from "./start";
 import exec from "./exec";
 import state from "./state";
-import { INodeParameters } from "./helpers";
+import {INodeParameters} from "./helpers";
+import {EVENT_TYPES} from "../constants";
 
 export default function () {
 	ipc.config.id = "puppeteer";
@@ -18,16 +19,26 @@ export default function () {
 				data: { globalOptions: IDataObject; executionId: string },
 				socket: any
 			) => {
-				let browser: Browser | void;
-				if (!state.executions[data.executionId]?.browser) {
-					browser = await start(data.globalOptions);
-					if (browser) state.executions[data.executionId] = { browser };
+				try {
+					console.log('[Index][IPC] On Launch', data);
+					let browser: Browser | void;
+					if (!state.executions[data.executionId]?.browser) {
+						browser = await start(data.globalOptions);
+						if (browser) state.executions[data.executionId] = {browser};
+					}
+					console.log('[Index][IPC] Emit Launch')
+					ipc.server.emit(
+						socket,
+						"launch",
+						!!state.executions[data.executionId]?.browser
+					);
+				} catch (e: any) {
+					ipc.server.emit(
+						socket,
+						"launch",
+						`${EVENT_TYPES.ERROR}: ${e.message}`
+					);
 				}
-				ipc.server.emit(
-					socket,
-					"launch",
-					!!state.executions[data.executionId]?.browser
-				);
 			}
 		);
 
@@ -41,13 +52,17 @@ export default function () {
 				},
 				socket: any
 			) => {
-				const returnData = await exec(
-					data.nodeParameters,
-					data.executionId,
-					data.continueOnFail
-				);
+				try {
+					const returnData = await exec(
+						data.nodeParameters,
+						data.executionId,
+						data.continueOnFail
+					);
 
-				ipc.server.emit(socket, "exec", returnData);
+					ipc.server.emit(socket, "exec", returnData);
+				} catch (e: any) {
+					ipc.server.emit(socket, "exec", `${EVENT_TYPES.ERROR}: ${e.message}`);
+				}
 			}
 		);
 
