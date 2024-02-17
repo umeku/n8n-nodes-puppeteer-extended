@@ -35,13 +35,13 @@ After installing the node, you can use it like any other node. n8n displays the 
 
 To get started install the package in your n8n root directory:
 
-`npm install n8n-nodes-puppeteer-extended`
+`npm install git+ssh://git@github.com:siduko/n8n-nodes-puppeteer-extended.git#main`
 
 
 For Docker-based deployments, you'll need to make sure [puppeteer is installed](https://developer.chrome.com/docs/puppeteer/troubleshooting/#running-puppeteer-in-docker) first. Then, add the following line before the font installation command in your [n8n Dockerfile](https://github.com/n8n-io/n8n/blob/master/docker/images/n8n/Dockerfile):
 
 
-`RUN cd /usr/local/lib/node_modules/n8n && npm install n8n-nodes-puppeteer-extended`
+`RUN cd /usr/local/lib/node_modules/n8n && npm install git+ssh://git@github.com:siduko/n8n-nodes-puppeteer-extended.git#main`
 
 Check out [this gist](https://gist.github.com/hckdotng/4232ceaaab6a3533aaca022cc2fdd726) for a working example with docker-compose.
 
@@ -111,7 +111,7 @@ Check out [this gist](https://gist.github.com/hckdotng/4232ceaaab6a3533aaca022cc
       * **Select All**: Instead of grabbing the first element matching the CSS selector, all matching elements will be returned.
       * **innerHTML**: In case of CSS selector (and HTML to JSON set to false), it will returns the raw innerHTML instead of the outerHTML.
       * **HTML to JSON**: Try to convert HTML nodes to JSON with the following logic:
-            
+
             <a href="/contact" class="mr-2 text-sm">Contact</a>
 
             "a": {
