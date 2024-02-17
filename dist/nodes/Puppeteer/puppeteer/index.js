@@ -8,6 +8,7 @@ const axios_1 = __importDefault(require("axios"));
 const start_1 = __importDefault(require("./start"));
 const exec_1 = __importDefault(require("./exec"));
 const state_1 = __importDefault(require("./state"));
+const constants_1 = require("../constants");
 function default_1() {
     node_ipc_1.default.config.id = "puppeteer";
     node_ipc_1.default.config.retry = 1500;
@@ -15,7 +16,7 @@ function default_1() {
         node_ipc_1.default.server.on("launch", async (data, socket) => {
             var _a, _b;
             try {
-                console.log('[Index][IPC] On Launch');
+                console.log('[Index][IPC] On Launch', data);
                 let browser;
                 if (!((_a = state_1.default.executions[data.executionId]) === null || _a === void 0 ? void 0 : _a.browser)) {
                     browser = await (0, start_1.default)(data.globalOptions);
@@ -26,13 +27,17 @@ function default_1() {
                 node_ipc_1.default.server.emit(socket, "launch", !!((_b = state_1.default.executions[data.executionId]) === null || _b === void 0 ? void 0 : _b.browser));
             }
             catch (e) {
-                console.log('[Index][IPC] Error Launch');
-                node_ipc_1.default.server.emit(socket, "launch", new Error(e));
+                node_ipc_1.default.server.emit(socket, "launch", `${constants_1.EVENT_TYPES.ERROR}: ${e.message}`);
             }
         });
         node_ipc_1.default.server.on("exec", async (data, socket) => {
-            const returnData = await (0, exec_1.default)(data.nodeParameters, data.executionId, data.continueOnFail);
-            node_ipc_1.default.server.emit(socket, "exec", returnData);
+            try {
+                const returnData = await (0, exec_1.default)(data.nodeParameters, data.executionId, data.continueOnFail);
+                node_ipc_1.default.server.emit(socket, "exec", returnData);
+            }
+            catch (e) {
+                node_ipc_1.default.server.emit(socket, "exec", `${constants_1.EVENT_TYPES.ERROR}: ${e.message}`);
+            }
         });
         node_ipc_1.default.server.on("check", async (data, socket) => {
             var _a;

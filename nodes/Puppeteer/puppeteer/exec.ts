@@ -580,9 +580,7 @@ export default async function (
 				allPageContent.push(pageContent(options, page));
 			});
 
-			const resolvedAllPageContent = await Promise.all(allPageContent).catch(
-				(e: any) => console.log(e)
-			);
+			const resolvedAllPageContent = await Promise.all(allPageContent);
 
 			(resolvedAllPageContent ?? []).forEach((pageContent) => {
 				data.json[pageContent.dataPropertyName] = pageContent.content;
@@ -606,7 +604,7 @@ export default async function (
 
 				const resolvedAllPageScreenshot = await Promise.all(
 					allScreenshot
-				).catch((e: any) => console.log(e));
+				);
 
 				(resolvedAllPageScreenshot ?? []).forEach((pageScreenshot) => {
 					if (pageScreenshot) {

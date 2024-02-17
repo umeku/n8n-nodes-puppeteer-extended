@@ -6,6 +6,7 @@ import start from "./start";
 import exec from "./exec";
 import state from "./state";
 import {INodeParameters} from "./helpers";
+import {EVENT_TYPES} from "../constants";
 
 export default function () {
 	ipc.config.id = "puppeteer";
@@ -19,7 +20,7 @@ export default function () {
 				socket: any
 			) => {
 				try {
-					console.log('[Index][IPC] On Launch')
+					console.log('[Index][IPC] On Launch', data);
 					let browser: Browser | void;
 					if (!state.executions[data.executionId]?.browser) {
 						browser = await start(data.globalOptions);
@@ -31,12 +32,11 @@ export default function () {
 						"launch",
 						!!state.executions[data.executionId]?.browser
 					);
-				} catch (e) {
-					console.log('[Index][IPC] Error Launch')
+				} catch (e: any) {
 					ipc.server.emit(
 						socket,
 						"launch",
-						new Error(e)
+						`${EVENT_TYPES.ERROR}: ${e.message}`
 					);
 				}
 			}
@@ -52,13 +52,17 @@ export default function () {
 				},
 				socket: any
 			) => {
-				const returnData = await exec(
-					data.nodeParameters,
-					data.executionId,
-					data.continueOnFail
-				);
+				try {
+					const returnData = await exec(
+						data.nodeParameters,
+						data.executionId,
+						data.continueOnFail
+					);
 
-				ipc.server.emit(socket, "exec", returnData);
+					ipc.server.emit(socket, "exec", returnData);
+				} catch (e: any) {
+					ipc.server.emit(socket, "exec", `${EVENT_TYPES.ERROR}: ${e.message}`);
+				}
 			}
 		);
 

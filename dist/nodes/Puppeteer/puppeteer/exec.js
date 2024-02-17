@@ -418,7 +418,7 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
             nodeParameters.output.getPageContent.forEach((options) => {
                 allPageContent.push(pageContent(options, page));
             });
-            const resolvedAllPageContent = await Promise.all(allPageContent).catch((e) => console.log(e));
+            const resolvedAllPageContent = await Promise.all(allPageContent);
             (resolvedAllPageContent !== null && resolvedAllPageContent !== void 0 ? resolvedAllPageContent : []).forEach((pageContent) => {
                 data.json[pageContent.dataPropertyName] = pageContent.content;
             });
@@ -440,7 +440,7 @@ async function default_1(nodeParameters, executionId, continueOnFail) {
                 for (const options of nodeParameters.output.getScreenshot) {
                     allScreenshot.push(pageScreenshot(options, page));
                 }
-                const resolvedAllPageScreenshot = await Promise.all(allScreenshot).catch((e) => console.log(e));
+                const resolvedAllPageScreenshot = await Promise.all(allScreenshot);
                 (resolvedAllPageScreenshot !== null && resolvedAllPageScreenshot !== void 0 ? resolvedAllPageScreenshot : []).forEach((pageScreenshot) => {
                     var _a;
                     if (pageScreenshot) {

@@ -1,4 +1,6 @@
 import ipc from "node-ipc";
+import * as _ from 'lodash';
+import {EVENT_TYPES} from "../constants";
 // import state from './state';
 
 export interface INodeParameters {
@@ -32,12 +34,13 @@ export const ipcRequest = (type: string, parameters: any): Promise<any> => {
 			ipc.of.puppeteer?.emit(type, parameters);
 
 			ipc.of.puppeteer?.on(type, (data: any) => {
-				if(data instanceof Error) {
-					console.log(`[Helper][IPC] Error ${type}`, data)
-					reject(data)
+				console.log(`[Helper][IPC] On ${type}`, data)
+				if(_.startsWith(data, EVENT_TYPES.ERROR)) {
+					console.log(`[Helper][IPC] Error`, data)
+					reject(new Error(data))
 					return
 				}
-				console.log(`[Helper][IPC] On ${type}`, data)
+
 				resolve(data);
 			});
 		});
