@@ -12,6 +12,7 @@ export default async function (globalOptions: IDataObject) {
 	// const pageCaching = globalOptions.pageCaching !== false;
 	const launchArgs: IDataObject[] = launchArguments.args as IDataObject[];
 	const args: string[] = [];
+	const ignoreHTTPSErrors = globalOptions.ignoreHTTPSErrors === false;
 
 	// More on launch arguments: https://www.chromium.org/developers/how-tos/run-chromium-with-flags/
 	if (launchArgs && launchArgs.length > 0) {
@@ -40,6 +41,7 @@ export default async function (globalOptions: IDataObject) {
 	const browser = await puppeteer
 		.launch({
 			headless,
+			ignoreHTTPSErrors,
 			args,
 			executablePath,
 		})

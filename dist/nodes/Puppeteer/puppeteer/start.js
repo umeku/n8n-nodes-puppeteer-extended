@@ -14,6 +14,7 @@ async function default_1(globalOptions) {
     const recaptcha = globalOptions.recaptcha === false;
     const launchArgs = launchArguments.args;
     const args = [];
+    const ignoreHTTPSErrors = globalOptions.ignoreHTTPSErrors === false;
     if (launchArgs && launchArgs.length > 0) {
         args.push(...launchArgs.map((arg) => arg.arg));
     }
@@ -35,6 +36,7 @@ async function default_1(globalOptions) {
     const browser = await puppeteer_extra_1.default
         .launch({
         headless,
+        ignoreHTTPSErrors,
         args,
         executablePath,
     });
