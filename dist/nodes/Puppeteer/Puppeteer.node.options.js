@@ -189,6 +189,14 @@ const globalOptions = [
         description: "Whether to run browser in headless mode. Defaults to new.",
     },
     {
+        displayName: "Ignore SSL Https Error",
+        name: "ignoreHTTPSErrors",
+        type: "boolean",
+        required: false,
+        default: true,
+        description: "Whether to ignore ssl errors when open HTTPs site. Defaults to new.",
+    },
+    {
         displayName: "Stealth mode",
         name: "stealth",
         type: "boolean",
