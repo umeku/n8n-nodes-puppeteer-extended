@@ -16,7 +16,7 @@ dependencies:
     version: 1.14.1(n8n-nodes-base@1.14.1)
   n8n-workflow:
     specifier: '*'
-    version: 1.14.1
+    version: 1.36.1
   node-ipc:
     specifier: ^11.1.0
     version: 11.1.0
@@ -1206,6 +1206,12 @@ packages:
     dependencies:
       acorn: 8.11.3
       acorn-walk: 8.3.2
+    dev: false
+
+  /@n8n_io/riot-tmpl@4.0.0:
+    resolution: {integrity: sha512-/xw8HQgYQlBCrt3IKpNSSB1CgpP7XArw1QTRjP+KEw+OHT8XGvHxXrW9VGdUu9RwDnzm/LFu+dNLeDmwJMeOwQ==}
+    dependencies:
+      eslint-config-riot: 1.0.0
     dev: false
 
   /@n8n_io/riot-tmpl@4.0.1:
@@ -2612,6 +2618,10 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
+  /charenc@0.0.2:
+    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
+    dev: false
+
   /cheerio-select@1.6.0:
     resolution: {integrity: sha512-eq0GdBvxVFbqWgmCm7M3XGs1I8oLy/nExUnh6oLqmBditPO9AqQJrkslDpMun/hZ0yyTs8L0m85OHp4ho6Qm9g==}
     dependencies:
@@ -2976,6 +2986,10 @@ packages:
       which: 1.3.1
     dev: false
 
+  /crypt@0.0.2:
+    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
+    dev: false
+
   /crypto-js@4.2.0:
     resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
     dev: false
@@ -3071,6 +3085,28 @@ packages:
     resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
     dev: true
+
+  /deep-equal@2.2.0:
+    resolution: {integrity: sha512-RdpzE0Hv4lhowpIUKKMJfeH6C1pXdtT1/it80ubgWqwI3qpuxUBpC1S4hnHg+zjnuOoDkzUtUCEEkG+XG5l3Mw==}
+    dependencies:
+      call-bind: 1.0.7
+      es-get-iterator: 1.1.3
+      get-intrinsic: 1.2.4
+      is-arguments: 1.1.1
+      is-array-buffer: 3.0.4
+      is-date-object: 1.0.5
+      is-regex: 1.1.4
+      is-shared-array-buffer: 1.0.2
+      isarray: 2.0.5
+      object-is: 1.1.5
+      object-keys: 1.1.1
+      object.assign: 4.1.5
+      regexp.prototype.flags: 1.5.2
+      side-channel: 1.0.5
+      which-boxed-primitive: 1.0.2
+      which-collection: 1.0.1
+      which-typed-array: 1.1.14
+    dev: false
 
   /deep-equal@2.2.3:
     resolution: {integrity: sha512-ZIwpnevOurS8bpT4192sqAowWM76JDKSHYzMLty3BZGSswgq6pBaH3DhCSW5xVAZICZyKdOBPjwww5wfgT/6PA==}
@@ -4892,6 +4928,10 @@ packages:
     engines: {node: '>= 0.6.0'}
     dev: false
 
+  /js-base64@3.7.2:
+    resolution: {integrity: sha512-NnRs6dsyqUXejqk/yv2aiXlAvOs56sLkX6nUdeaNezI5LFFLlsZjOThmwnrcwh5ZZRwZlCMnVAY3CvhIhoVEKQ==}
+    dev: false
+
   /js-base64@3.7.6:
     resolution: {integrity: sha512-NPrWuHFxFUknr1KqJRDgUQPexQF0uIJWjeT+2KjEePhitQxQEx5EJBG1lVn5/hc8aLycTpXrDOgPQ6Zq+EDiTA==}
     dev: false
@@ -5275,6 +5315,11 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
+  /luxon@3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
+    engines: {node: '>=12'}
+    dev: false
+
   /luxon@3.4.4:
     resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
     engines: {node: '>=12'}
@@ -5343,6 +5388,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /md5@2.3.0:
+    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
+    dev: false
 
   /memory-pager@1.5.0:
     resolution: {integrity: sha512-ZS4Bp4r/Zoeq6+NLJpP+0Zzm0pR8whtGPf1XExKLJBAczGMnSi3It14OiNCStjQjM6NU1okjQGSxgEZN8eBYKg==}
@@ -5738,6 +5791,31 @@ packages:
       title-case: 3.0.3
       transliteration: 2.3.5
       xml2js: 0.5.0
+    dev: false
+
+  /n8n-workflow@1.36.1:
+    resolution: {integrity: sha512-lOPkf+Y+teinXNDd5oP9RIm6m8JuGNlmTex6H2mg1155eVb9K10t7ol3wxJ5ljP8+G1Fz65HWmGslDSyZ1AhzQ==}
+    dependencies:
+      '@n8n/tournament': 1.0.2
+      '@n8n_io/riot-tmpl': 4.0.0
+      ast-types: 0.15.2
+      axios: 1.6.7(debug@3.2.7)
+      callsites: 3.1.0
+      deep-equal: 2.2.0
+      esprima-next: 5.8.4
+      form-data: 4.0.0
+      jmespath: 0.16.0
+      js-base64: 3.7.2
+      jssha: 3.3.1
+      lodash: 4.17.21
+      luxon: 3.3.0
+      md5: 2.3.0
+      recast: 0.21.5
+      title-case: 3.0.3
+      transliteration: 2.3.5
+      xml2js: 0.6.2
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /named-placeholders@1.1.3:
@@ -8457,6 +8535,14 @@ packages:
 
   /xml2js@0.5.0:
     resolution: {integrity: sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      sax: 1.3.0
+      xmlbuilder: 11.0.1
+    dev: false
+
+  /xml2js@0.6.2:
+    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
     engines: {node: '>=4.0.0'}
     dependencies:
       sax: 1.3.0
