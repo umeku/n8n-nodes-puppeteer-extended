@@ -19,7 +19,7 @@ importers:
         version: 1.46.0
       n8n-workflow:
         specifier: '*'
-        version: 1.36.1
+        version: 1.47.0
       node-ipc:
         specifier: ^11.1.0
         version: 11.1.0
@@ -1180,11 +1180,11 @@ packages:
     resolution: {integrity: sha512-i+E7qE2U617Z1Iw6ZuYXVXcYwfTkRYaxGYictDsgFdDrbVz+K6ueK9l3UHdoI/C0MFTSh/rCBR2pbtFJwcElKQ==}
     hasBin: true
 
-  n8n-workflow@1.36.1:
-    resolution: {integrity: sha512-lOPkf+Y+teinXNDd5oP9RIm6m8JuGNlmTex6H2mg1155eVb9K10t7ol3wxJ5ljP8+G1Fz65HWmGslDSyZ1AhzQ==}
-
   n8n-workflow@1.45.0:
     resolution: {integrity: sha512-CIDLtd3QMaJP5HiNBsyK+2IkV07UxtcJ8chg4scjm+sd7qJRnW/5ZlHxGkY23N2d9gZmkwUxc90qOzwEbQcx5Q==}
+
+  n8n-workflow@1.47.0:
+    resolution: {integrity: sha512-mk7LXb4d9jk+MWrS4z34XuYMF3HQwZ73IdD+eVr6Hgnz9vbcS40fN95TpyXv6r0TD9HsyUz3H+hDEM5kHG9zxg==}
 
   netmask@2.0.2:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
@@ -3137,7 +3137,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  n8n-workflow@1.36.1:
+  n8n-workflow@1.45.0:
     dependencies:
       '@n8n/tournament': 1.0.2
       '@n8n_io/riot-tmpl': 4.0.0
@@ -3160,7 +3160,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  n8n-workflow@1.45.0:
+  n8n-workflow@1.47.0:
     dependencies:
       '@n8n/tournament': 1.0.2
       '@n8n_io/riot-tmpl': 4.0.0
