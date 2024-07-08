@@ -16,7 +16,7 @@ importers:
         version: 4.17.21
       n8n-core:
         specifier: '*'
-        version: 1.46.0
+        version: 1.49.0
       n8n-workflow:
         specifier: '*'
         version: 1.36.1
@@ -97,8 +97,8 @@ packages:
     resolution: {integrity: sha512-kjotm7XJrJ6v+7knhPaRgaT6q8F8K2jiafwYdNHLzmV0uGLuZY43FK6smNSHUPrhq5kX2slCUy+RGG/xGqmIKA==}
     engines: {node: '>=10.13.0'}
 
-  '@n8n/client-oauth2@0.16.0':
-    resolution: {integrity: sha512-CiYMkI8J4sjmKRF7Kst2f7Z6/6OMGahy68tKcb+w+cZC3pbgo0QzWWkkXId+DUWruz7jUOyMcnQcPsL8STPIzg==}
+  '@n8n/client-oauth2@0.18.0':
+    resolution: {integrity: sha512-sXGQXo0Dg5VTsEYd9n3rQiFsWELQ2/y22C2Yfohmp5njx+BirRXMiNdzfC1HX+V2uym07PV3DwfBt2r5XVEIdg==}
 
   '@n8n/tournament@1.0.2':
     resolution: {integrity: sha512-fTpi7F8ra5flGSVfRzohPyG7czAAKCZPlLjdKdwbLJivLoI/Ekhgodov1jfVSCVFVbwQ06gRQRxLEDzl2jl8ig==}
@@ -1176,15 +1176,15 @@ packages:
   mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
 
-  n8n-core@1.46.0:
-    resolution: {integrity: sha512-i+E7qE2U617Z1Iw6ZuYXVXcYwfTkRYaxGYictDsgFdDrbVz+K6ueK9l3UHdoI/C0MFTSh/rCBR2pbtFJwcElKQ==}
+  n8n-core@1.49.0:
+    resolution: {integrity: sha512-xYCBOq7tJiSL8l4z/mxdfOJDIH+UTV+PMz1Is0SatIeVSld12KF+IAX5Xeg7Vsl1bT40JUnwiH0bPgPKZ8nycg==}
     hasBin: true
 
   n8n-workflow@1.36.1:
     resolution: {integrity: sha512-lOPkf+Y+teinXNDd5oP9RIm6m8JuGNlmTex6H2mg1155eVb9K10t7ol3wxJ5ljP8+G1Fz65HWmGslDSyZ1AhzQ==}
 
-  n8n-workflow@1.45.0:
-    resolution: {integrity: sha512-CIDLtd3QMaJP5HiNBsyK+2IkV07UxtcJ8chg4scjm+sd7qJRnW/5ZlHxGkY23N2d9gZmkwUxc90qOzwEbQcx5Q==}
+  n8n-workflow@1.48.0:
+    resolution: {integrity: sha512-zHeOHhlf7BB2+DeAcm81+sJfmss8u/TE3KLpc/vCRc1vPonvF0iN5X5/DskHTGKPyXrP6N7wR6bkGWEXN7w08A==}
 
   netmask@2.0.2:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
@@ -1970,7 +1970,7 @@ snapshots:
     dependencies:
       is-negated-glob: 1.0.0
 
-  '@n8n/client-oauth2@0.16.0':
+  '@n8n/client-oauth2@0.18.0':
     dependencies:
       axios: 1.6.7
     transitivePeerDependencies:
@@ -3113,9 +3113,9 @@ snapshots:
 
   mute-stream@0.0.8: {}
 
-  n8n-core@1.46.0:
+  n8n-core@1.49.0:
     dependencies:
-      '@n8n/client-oauth2': 0.16.0
+      '@n8n/client-oauth2': 0.18.0
       aws4: 1.11.0
       axios: 1.6.7
       concat-stream: 2.0.0
@@ -3126,7 +3126,7 @@ snapshots:
       lodash: 4.17.21
       luxon: 3.4.4
       mime-types: 2.1.35
-      n8n-workflow: 1.45.0
+      n8n-workflow: 1.48.0
       oauth-1.0a: 2.2.6
       p-cancelable: 2.1.1
       pretty-bytes: 5.6.0
@@ -3160,7 +3160,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  n8n-workflow@1.45.0:
+  n8n-workflow@1.48.0:
     dependencies:
       '@n8n/tournament': 1.0.2
       '@n8n_io/riot-tmpl': 4.0.0
