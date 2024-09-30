@@ -19,7 +19,7 @@ importers:
         version: 1.60.0
       n8n-workflow:
         specifier: '*'
-        version: 1.36.1
+        version: 1.60.0
       node-ipc:
         specifier: ^11.1.0
         version: 11.1.0
@@ -103,10 +103,6 @@ packages:
 
   '@n8n/client-oauth2@0.21.0':
     resolution: {integrity: sha512-o3kmCzvJJnmq+8Ae0KaUkTG80V0OxGKw1PM7i+1d3S3s+s3VioOlf9iyBk4jU+dsgbIMvDkFl9kEKz1wlg5VPw==}
-
-  '@n8n/tournament@1.0.2':
-    resolution: {integrity: sha512-fTpi7F8ra5flGSVfRzohPyG7czAAKCZPlLjdKdwbLJivLoI/Ekhgodov1jfVSCVFVbwQ06gRQRxLEDzl2jl8ig==}
-    engines: {node: '>=18.10', pnpm: '>=8.6'}
 
   '@n8n/tournament@1.0.5':
     resolution: {integrity: sha512-IPBHa7gC0wwHVct/dnBquHz+uMCDZaZ05cor1D/rjlwaOe/PVu5mtoZaPHYuR98R3W1/IyxC5PuBd0JizDP9gg==}
@@ -288,9 +284,6 @@ packages:
 
   aws4@1.11.0:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
-
-  axios@1.6.7:
-    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
 
   axios@1.7.2:
     resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
@@ -1163,10 +1156,6 @@ packages:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
 
-  luxon@3.3.0:
-    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
-    engines: {node: '>=12'}
-
   luxon@3.4.4:
     resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
     engines: {node: '>=12'}
@@ -1242,11 +1231,11 @@ packages:
     resolution: {integrity: sha512-tF3DHYmJfKKWXGVcvhGR9lOhwiQ7aksO5nTnTYZeQd4n3CEb2sxMJt6F8OdgE7kn93YWALOtv2Y+o+Os1WZwmQ==}
     hasBin: true
 
-  n8n-workflow@1.36.1:
-    resolution: {integrity: sha512-lOPkf+Y+teinXNDd5oP9RIm6m8JuGNlmTex6H2mg1155eVb9K10t7ol3wxJ5ljP8+G1Fz65HWmGslDSyZ1AhzQ==}
-
   n8n-workflow@1.59.0:
     resolution: {integrity: sha512-OVPnNZS97QC3VLj5i1rJbK/oRPeO/RuAPtI9OAWXMM7cFu4CvDLaxATuoITwQzXM1SRg7hfcxYgv/l/jnSlmrQ==}
+
+  n8n-workflow@1.60.0:
+    resolution: {integrity: sha512-A4sAJQVz1Mkj9guyzdNcn/neR3FPR6Avc0gcN1fxE24ZvbMNZGbjWEVIJHIgwIIsShVaoE5W/RGC6NDloMPg6Q==}
 
   nan@2.20.0:
     resolution: {integrity: sha512-bk3gXBZDGILuuo/6sKtr0DQmSThYHLtNCdSdXk9YkxD/jK6X2vmCyyXBBxyqZ4XcnzTyYEAThfX3DCEnLf6igw==}
@@ -2094,13 +2083,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@n8n/tournament@1.0.2':
-    dependencies:
-      '@n8n_io/riot-tmpl': 4.0.1
-      ast-types: 0.16.1
-      esprima-next: 5.8.4
-      recast: 0.22.0
-
   '@n8n/tournament@1.0.5':
     dependencies:
       '@n8n_io/riot-tmpl': 4.0.1
@@ -2293,14 +2275,6 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   aws4@1.11.0: {}
-
-  axios@1.6.7:
-    dependencies:
-      follow-redirects: 1.15.6
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
 
   axios@1.7.2:
     dependencies:
@@ -3229,8 +3203,6 @@ snapshots:
 
   lru-cache@7.18.3: {}
 
-  luxon@3.3.0: {}
-
   luxon@3.4.4: {}
 
   map-cache@0.2.2: {}
@@ -3317,12 +3289,12 @@ snapshots:
       - debug
       - openai
 
-  n8n-workflow@1.36.1:
+  n8n-workflow@1.59.0:
     dependencies:
-      '@n8n/tournament': 1.0.2
+      '@n8n/tournament': 1.0.5
       '@n8n_io/riot-tmpl': 4.0.0
       ast-types: 0.15.2
-      axios: 1.6.7
+      axios: 1.7.4
       callsites: 3.1.0
       deep-equal: 2.2.0
       esprima-next: 5.8.4
@@ -3331,7 +3303,7 @@ snapshots:
       js-base64: 3.7.2
       jssha: 3.3.1
       lodash: 4.17.21
-      luxon: 3.3.0
+      luxon: 3.4.4
       md5: 2.3.0
       recast: 0.21.5
       title-case: 3.0.3
@@ -3340,7 +3312,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  n8n-workflow@1.59.0:
+  n8n-workflow@1.60.0:
     dependencies:
       '@n8n/tournament': 1.0.5
       '@n8n_io/riot-tmpl': 4.0.0
