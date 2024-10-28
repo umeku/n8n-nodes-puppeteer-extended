@@ -16,7 +16,7 @@ importers:
         version: 4.17.21
       n8n-core:
         specifier: '*'
-        version: 1.60.0
+        version: 1.65.0
       n8n-workflow:
         specifier: '*'
         version: 1.36.1
@@ -77,17 +77,21 @@ packages:
 
   '@cliqz/adblocker-content@1.27.11':
     resolution: {integrity: sha512-tvTYUkQsTzI4O7gCG4/eIiyXpyFxUr355vwEmtc1HAE02x69fIR2o5GjlBs0V03LO+p+3oAQGaiZB8y76sq7Cw==}
+    deprecated: This project has been renamed to @ghostery/adblocker-content. Install using @ghostery/adblocker-content instead
 
   '@cliqz/adblocker-extended-selectors@1.27.11':
     resolution: {integrity: sha512-pS/obN/w7lEGtDTDiA/w/bosTQ01q9Nnnm4kuIjEBf/b2RgVP6nmT79ZTv8WUj8v9/eGkyvnY/7rqnpjK33nBQ==}
+    deprecated: This project has been renamed to @ghostery/adblocker-extended-selectors. Install using @ghostery/adblocker-extended-selectors instead
 
   '@cliqz/adblocker-puppeteer@1.23.8':
     resolution: {integrity: sha512-Ca1/DBqQXsOpKTFVAHX6OpLTSEupXmUkUWHj6iXhLLleC7RPISN5B0b801VDmaGRqoC5zKRxn0vYbIfpgCWVug==}
+    deprecated: This project has been renamed to @ghostery/adblocker-puppeteer. Install using @ghostery/adblocker-puppeteer instead
     peerDependencies:
       puppeteer: '>5'
 
   '@cliqz/adblocker@1.27.11':
     resolution: {integrity: sha512-nNhXLCzYwwFsDNZiAr7p5O/J/X7CKq247znQlIZJDYi3LwncK/2nJxKpmOuGxIoj8QRhm2AMwebSJTGTm47RBQ==}
+    deprecated: This project has been renamed to @ghostery/adblocker. Install using @ghostery/adblocker instead
 
   '@gulpjs/messages@1.1.0':
     resolution: {integrity: sha512-Ys9sazDatyTgZVb4xPlDufLweJ/Os2uHWOv+Caxvy2O85JcnT4M3vc73bi8pdLWlv3fdWQz3pdI9tVwo8rQQSg==}
@@ -97,12 +101,15 @@ packages:
     resolution: {integrity: sha512-kjotm7XJrJ6v+7knhPaRgaT6q8F8K2jiafwYdNHLzmV0uGLuZY43FK6smNSHUPrhq5kX2slCUy+RGG/xGqmIKA==}
     engines: {node: '>=10.13.0'}
 
-  '@langchain/core@0.2.31':
-    resolution: {integrity: sha512-qGfeaACST7dvovgHItzuag9fEBGK7IjCE9vRuTu/y8/WYGJi28WPD/AwWxnu7YdW1vZSuIXO6ZA76t2G9B/oKg==}
+  '@langchain/core@0.3.3':
+    resolution: {integrity: sha512-WAtkmhbdl2T41qzimTzhb3pXCHQxO4onqxzPxgdf3KftQdTwLq0YYBDhozRMZLNAd/+cfH0ymZGaZSsnc9Ogsg==}
     engines: {node: '>=18'}
 
   '@n8n/client-oauth2@0.21.0':
     resolution: {integrity: sha512-o3kmCzvJJnmq+8Ae0KaUkTG80V0OxGKw1PM7i+1d3S3s+s3VioOlf9iyBk4jU+dsgbIMvDkFl9kEKz1wlg5VPw==}
+
+  '@n8n/config@1.15.0':
+    resolution: {integrity: sha512-3a/Nr32bWvTq5a62zg23rSwRShlYTQnqcIWGrY1Uv0YJxWsowAzCXg+jYq76pqqEbcnsWuLUIpSnRC6oMmnwyQ==}
 
   '@n8n/tournament@1.0.2':
     resolution: {integrity: sha512-fTpi7F8ra5flGSVfRzohPyG7czAAKCZPlLjdKdwbLJivLoI/Ekhgodov1jfVSCVFVbwQ06gRQRxLEDzl2jl8ig==}
@@ -1238,18 +1245,23 @@ packages:
   mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
 
-  n8n-core@1.60.0:
-    resolution: {integrity: sha512-tF3DHYmJfKKWXGVcvhGR9lOhwiQ7aksO5nTnTYZeQd4n3CEb2sxMJt6F8OdgE7kn93YWALOtv2Y+o+Os1WZwmQ==}
+  n8n-core@1.65.0:
+    resolution: {integrity: sha512-kguSvhfTAQeV16UJ6Gqp15IRX2UTmKXYfHd0kL3G/JCIsCPFXEwl+BYzYoMUN9bRJZ3nX+r3ahlkiXcek0nLHA==}
     hasBin: true
 
   n8n-workflow@1.36.1:
     resolution: {integrity: sha512-lOPkf+Y+teinXNDd5oP9RIm6m8JuGNlmTex6H2mg1155eVb9K10t7ol3wxJ5ljP8+G1Fz65HWmGslDSyZ1AhzQ==}
 
-  n8n-workflow@1.59.0:
-    resolution: {integrity: sha512-OVPnNZS97QC3VLj5i1rJbK/oRPeO/RuAPtI9OAWXMM7cFu4CvDLaxATuoITwQzXM1SRg7hfcxYgv/l/jnSlmrQ==}
+  n8n-workflow@1.64.0:
+    resolution: {integrity: sha512-0eQg/Szneny+WXOagpmMn1ueVxj+bpcpUhy5vHDOQTo7V9lad7Be9sJYbWDNi17uqVQCgo6284aZfL3IuNf0pw==}
 
   nan@2.20.0:
     resolution: {integrity: sha512-bk3gXBZDGILuuo/6sKtr0DQmSThYHLtNCdSdXk9YkxD/jK6X2vmCyyXBBxyqZ4XcnzTyYEAThfX3DCEnLf6igw==}
+
+  nanoid@3.3.6:
+    resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
 
   netmask@2.0.2:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
@@ -1564,6 +1576,9 @@ packages:
   rechoir@0.8.0:
     resolution: {integrity: sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ==}
     engines: {node: '>= 10.13.0'}
+
+  reflect-metadata@0.2.2:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
 
   regexp.prototype.flags@1.5.2:
     resolution: {integrity: sha512-NcDiDkTLuPR+++OCKB0nWafEmhg/Da8aUPLPMQbK+bxKKCm1/S5he+AqYa4PlMCVBalb4/yxIRub6qkEx5yJbw==}
@@ -2072,7 +2087,7 @@ snapshots:
     dependencies:
       is-negated-glob: 1.0.0
 
-  '@langchain/core@0.2.31':
+  '@langchain/core@0.3.3':
     dependencies:
       ansi-styles: 5.2.0
       camelcase: 6.3.0
@@ -2093,6 +2108,11 @@ snapshots:
       axios: 1.7.4
     transitivePeerDependencies:
       - debug
+
+  '@n8n/config@1.15.0':
+    dependencies:
+      reflect-metadata: 0.2.2
+      typedi: 0.10.0
 
   '@n8n/tournament@1.0.2':
     dependencies:
@@ -3289,10 +3309,11 @@ snapshots:
 
   mute-stream@0.0.8: {}
 
-  n8n-core@1.60.0:
+  n8n-core@1.65.0:
     dependencies:
-      '@langchain/core': 0.2.31
+      '@langchain/core': 0.3.3
       '@n8n/client-oauth2': 0.21.0
+      '@n8n/config': 1.15.0
       aws4: 1.11.0
       axios: 1.7.4
       concat-stream: 2.0.0
@@ -3303,7 +3324,8 @@ snapshots:
       lodash: 4.17.21
       luxon: 3.4.4
       mime-types: 2.1.35
-      n8n-workflow: 1.59.0
+      n8n-workflow: 1.64.0
+      nanoid: 3.3.6
       oauth-1.0a: 2.2.6
       p-cancelable: 2.1.1
       pretty-bytes: 5.6.0
@@ -3340,7 +3362,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  n8n-workflow@1.59.0:
+  n8n-workflow@1.64.0:
     dependencies:
       '@n8n/tournament': 1.0.5
       '@n8n_io/riot-tmpl': 4.0.0
@@ -3365,6 +3387,8 @@ snapshots:
 
   nan@2.20.0:
     optional: true
+
+  nanoid@3.3.6: {}
 
   netmask@2.0.2: {}
 
@@ -3713,6 +3737,8 @@ snapshots:
   rechoir@0.8.0:
     dependencies:
       resolve: 1.22.8
+
+  reflect-metadata@0.2.2: {}
 
   regexp.prototype.flags@1.5.2:
     dependencies:
